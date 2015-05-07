@@ -14,6 +14,9 @@ class ViewController: UIViewController {
     
     var userIsInTheMiddleOfTypingANumber: Bool = false
     
+    var brain = CalculatorBrain()
+    
+    
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
         if userIsInTheMiddleOfTypingANumber {
@@ -21,6 +24,20 @@ class ViewController: UIViewController {
         } else {
             display.text = digit
             userIsInTheMiddleOfTypingANumber = true
+        }
+    }
+    
+    @IBAction func operate(sender: UIButton) {
+        if userIsInTheMiddleOfTypingANumber {
+            enter()
+        }
+        
+        if let operation = sender.currentTitle {
+            if let result = brain.performOperation(operation) {
+                displayValue = result
+            } else {
+                displayValue = 0
+            }
         }
     }
     
@@ -43,28 +60,15 @@ class ViewController: UIViewController {
     
     @IBAction func enter() {
         userIsInTheMiddleOfTypingANumber = false
-        operandStack.append(displayValue)
-
-        
-        NSLog("operandStack = \(operandStack)" )
-    }
-    
-    @IBAction func operate(sender: UIButton) {
-        let operation = sender.currentTitle!
-        println("CURRENT TITLE = \(operation)")
-        
-        if userIsInTheMiddleOfTypingANumber {
-            enter()
+//        operandStack.append(displayValue)
+//        
+//        NSLog("operandStack = \(operandStack)" )
+        if let result = brain.pushOperand(displayValue) {
+            displayValue = result
+        } else {
+            displayValue = 0
         }
-        println("CALCULATION")
-        switch operation {
-            case "×": performOperation { $0 * $1 }
-            case "÷": performOperation { $1 / $0 }
-            case "+": performOperation { $0 + $1 }
-            case "−": performOperation { $1 - $0 }
-            case "√": performOperation { sqrt($0) }
-            default: break
-        }
+        
     }
     
     var displayValue: Double {
