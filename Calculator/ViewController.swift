@@ -23,5 +23,62 @@ class ViewController: UIViewController {
             userIsInTheMiddleOfTypingANumber = true
         }
     }
+    
+    //var operandStack:Array<Double> = Array<Double>()
+    var operandStack = Array<Double>()
+    
+    @IBAction func enter() {
+        userIsInTheMiddleOfTypingANumber = false
+        operandStack.append(displayValue)
+
+        
+        NSLog("operandStack = \(operandStack)" )
+    }
+    
+    @IBAction func operate(sender: UIButton) {
+        let operation = sender.currentTitle!
+//        println("Tag 1")
+        NSLog("CURRENT TITLE = \(operation)")
+        
+        if userIsInTheMiddleOfTypingANumber {
+            enter()
+        }
+        NSLog("CALCULATION")
+        switch operation {
+            case "✖️":
+                NSLog("result of x")
+                if operandStack.count >= 2 {
+                    displayValue = operandStack.removeLast() * operandStack.removeLast()
+                    enter()
+                }
+            case "➗":
+                if operandStack.count >= 2 {
+                    displayValue = operandStack.removeLast() / operandStack.removeLast()
+                    enter()
+                }
+            case "➕":
+                if operandStack.count >= 2 {
+                    displayValue = operandStack.removeLast() + operandStack.removeLast()
+                    enter()
+                }
+            case "➖":
+                if operandStack.count >= 2 {
+                    displayValue = operandStack.removeLast() - operandStack.removeLast()
+                    enter()
+                }
+            default: break
+        }
+    }
+    
+    var displayValue: Double {
+        get {
+            return NSNumberFormatter().numberFromString(display.text!)!.doubleValue
+        }
+        set {
+            display.text = "\(newValue)"
+            userIsInTheMiddleOfTypingANumber = false
+        }
+    }
+    
 }
 
