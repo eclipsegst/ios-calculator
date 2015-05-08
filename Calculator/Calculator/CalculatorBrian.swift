@@ -52,6 +52,35 @@ class CalculatorBrain {
                 
     }
     
+//    typealias PropertyList = AnyObject
+//    var program: PropertyList {
+    var program: AnyObject {    // guaranteed to be a PropertyList
+        
+        get {
+//            var returnValue = Array<String>()
+//            for op in opStack {
+//                returnValue.append(op.description)
+//            }
+//            return returnValue
+            // Replace above with one line below
+            return opStack.map { $0.description }
+        }
+        set {
+            if let opSymbols = newValue as? Array<String> {
+                var newOpStack = [Op]()
+                for opSymbol in opSymbols {
+                    if let op = knownOps[opSymbol] {
+                        newOpStack.append(op)
+                    } else if let operand = NSNumberFormatter().numberFromString(opSymbol)?.doubleValue {
+                        newOpStack.append(.Operand(operand))
+                    }
+                }
+                opStack = newOpStack
+            }
+        }
+        
+    }
+    
     private func evaluate(ops: [Op]) -> (result: Double?, remainingOps: [Op]) {
         
         if !ops.isEmpty {
