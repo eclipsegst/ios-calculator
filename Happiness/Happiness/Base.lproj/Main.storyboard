@@ -19,6 +19,15 @@
                             <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="UzM-Uu-ZpA" customClass="FaceView" customModule="Happiness" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" red="1" green="0.71997986570000005" blue="0.59542784879999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9Gl-if-pYw" appends="YES" id="htJ-cH-rtq"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -29,8 +38,16 @@
                             <constraint firstAttribute="trailing" secondItem="UzM-Uu-ZpA" secondAttribute="trailing" id="oPS-It-gFO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="faceView" destination="UzM-Uu-ZpA" id="fQ9-IC-zFk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bro-ha-aWr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="9Gl-if-pYw">
+                    <connections>
+                        <action selector="changeHappiness:" destination="ja9-9a-ZMY" id="mn5-IT-cqa"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="336" y="357"/>
         </scene>
