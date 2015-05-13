@@ -14,6 +14,7 @@
 		56ADBFD01B03D06A00D49549 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56ADBFCE1B03D06A00D49549 /* LaunchScreen.xib */; };
 		56ADBFDC1B03D06A00D49549 /* DropitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ADBFDB1B03D06A00D49549 /* DropitTests.swift */; };
 		56ADBFE61B03D60500D49549 /* DropitBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ADBFE51B03D60500D49549 /* DropitBehavior.swift */; };
+		56ADBFE81B03E6FA00D49549 /* BezierPathsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ADBFE71B03E6FA00D49549 /* BezierPathsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		56ADBFDA1B03D06A00D49549 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56ADBFDB1B03D06A00D49549 /* DropitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropitTests.swift; sourceTree = "<group>"; };
 		56ADBFE51B03D60500D49549 /* DropitBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropitBehavior.swift; sourceTree = "<group>"; };
+		56ADBFE71B03E6FA00D49549 /* BezierPathsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierPathsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				56ADBFC71B03D06A00D49549 /* DropitViewController.swift */,
+				56ADBFE71B03E6FA00D49549 /* BezierPathsView.swift */,
 				56ADBFE51B03D60500D49549 /* DropitBehavior.swift */,
 				56ADBFC91B03D06A00D49549 /* Main.storyboard */,
 				56ADBFC31B03D06A00D49549 /* Supporting Files */,
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56ADBFE81B03E6FA00D49549 /* BezierPathsView.swift in Sources */,
 				56ADBFC81B03D06A00D49549 /* DropitViewController.swift in Sources */,
 				56ADBFC61B03D06A00D49549 /* AppDelegate.swift in Sources */,
 				56ADBFE61B03D60500D49549 /* DropitBehavior.swift in Sources */,
