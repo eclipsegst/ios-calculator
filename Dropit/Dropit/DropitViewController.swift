@@ -21,6 +21,27 @@ class DropitViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     let dropitBehavior = DropitBehavior()
     
+    var attachment: UIAttachmentBehavior? {
+        willSet {
+            animator.removeBehavior(attachment)
+            gameView.setPath(nil, named: PathNames.Attachment)
+        }
+        didSet {
+            if attachment != nil {
+                animator.addBehavior(attachment)
+                attachment?.action = { [unowned self] in
+                    if let attachedView = self.attachment?.items.first as? UIView {
+                        let path = UIBezierPath()
+                        path.moveToPoint(self.attachment!.anchorPoint)
+                        path.addLineToPoint(attachedView.center)
+                        self.gameView.setPath(path, named: PathNames.Attachment)
+                    }
+                }
+            }
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +51,7 @@ class DropitViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     struct PathNames {
         static let MiddleBarrier = "Middle Barrier"
+        static let Attachment = "Attachment"
     }
     
     override func viewDidLayoutSubviews() {
@@ -58,6 +80,26 @@ class DropitViewController: UIViewController, UIDynamicAnimatorDelegate {
         drop()
     }
     
+    @IBAction func grabDrop(sender: UIPanGestureRecognizer) {
+        
+        let gesturePoint = sender.locationInView(gameView)
+        
+        switch sender.state {
+        case .Began:
+            if let viewToAttachTo = lastDroppedView {
+                attachment = UIAttachmentBehavior(item: viewToAttachTo, attachedToAnchor: gesturePoint)
+                lastDroppedView = nil
+            }
+        case .Changed:
+            attachment?.anchorPoint = gesturePoint
+        case .Ended:
+            attachment = nil
+        default: break
+        }
+    }
+    
+    var lastDroppedView: UIView?
+    
     func drop() {
         var frame = CGRect(origin: CGPointZero, size: dropSize)
         frame.origin.x = CGFloat.random(dropsPerRow) * dropSize.width
@@ -65,6 +107,8 @@ class DropitViewController: UIViewController, UIDynamicAnimatorDelegate {
         dropView.backgroundColor = UIColor.random
 
         dropitBehavior.addDrop(dropView)
+        
+        lastDroppedView = dropView
     }
     
     func removeCompletedRow() {
