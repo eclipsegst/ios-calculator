@@ -79,20 +79,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="fqw-hT-OpC">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l2E-lE-Wmb">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="fqw-hT-OpC" secondAttribute="centerX" id="3G2-i5-Mat"/>
                             <constraint firstAttribute="trailing" secondItem="l2E-lE-Wmb" secondAttribute="trailing" id="Ix3-aC-LFZ"/>
                             <constraint firstItem="l2E-lE-Wmb" firstAttribute="leading" secondItem="Tyh-LC-hVg" secondAttribute="leading" id="Ral-IJ-5rg"/>
+                            <constraint firstAttribute="centerY" secondItem="fqw-hT-OpC" secondAttribute="centerY" id="TRb-wY-1SK"/>
                             <constraint firstItem="l2E-lE-Wmb" firstAttribute="bottom" secondItem="yMg-gB-ieu" secondAttribute="top" id="jnQ-24-8bV"/>
                             <constraint firstItem="l2E-lE-Wmb" firstAttribute="top" secondItem="Tyh-LC-hVg" secondAttribute="top" id="rhZ-XO-ehv"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="scrollView" destination="l2E-lE-Wmb" id="UYU-AC-b8k"/>
+                        <outlet property="spinner" destination="fqw-hT-OpC" id="Xqg-zp-11y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QQB-6d-Bzh" userLabel="First Responder" sceneMemberID="firstResponder"/>
